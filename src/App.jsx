@@ -1,3 +1,5 @@
+import './App.css';
+
 const Hello = (props) => {
   // console.log(props);
   return (
@@ -10,7 +12,7 @@ const Hello = (props) => {
 const App = () => {
   return (
     <div>
-      <h1 style={{ color: 'white', background: 'red' }}>Greetings</h1>
+      <h1>Greetings</h1>
       <Hello name='Sathish' age='30' />
       <Hello name='Krish' age='10' />
     </div>
