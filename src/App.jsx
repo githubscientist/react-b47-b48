@@ -2,13 +2,12 @@
 // javascript function 
 // for now it does not receive any arguments
 const App = () => {
-  // it can also execute or contain javascript code
-  console.log('Hello from Component App');
+  const now = new Date();
 
   // returns a html
   return (
     <div>
-      <p>Hello World!</p>
+      <p>Hello World!, it is { now.toString() }</p>
     </div>
   )
 }
