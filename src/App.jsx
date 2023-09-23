@@ -11,8 +11,8 @@ function App(props) {
       <h1>Notes</h1>
       <ul>
         {
-          notes.map((note) => {
-            return <li key={note.id}>{ note.content }</li>
+          notes.map((note, index) => {
+            return <li key={index}>{ note.content }</li>
           })
         }
       </ul>
