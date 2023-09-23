@@ -9,14 +9,14 @@ function App(props) {
     optionList.push(<Note key={note.id} note={note} />);
   });
 
-  console.log(optionList);
+  // console.log(optionList);
 
   return (
     <div>
       <h1>Notes</h1>
-      <select>
+      <ul>
         { optionList }
-      </select>
+      </ul>
     </div>
   )
 }
