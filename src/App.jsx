@@ -11,12 +11,7 @@ function App(props) {
 
   // console.log(optionList);
 
-  const addNote = (event) => {
-    event.preventDefault();
-    // console.log('button clicked');
-    // console.log(event.target);
-
-    // console.log(event.target.elements.note.value);
+  const addNote = () => {
     console.log('button clicked');
   }
 
@@ -29,7 +24,7 @@ function App(props) {
 
       <form>
         <input name='note' />
-        <button onClick={addNote}>Save Note</button>
+        <button onClick={() => addNote()}>Save Note</button>
       </form>
     </div>
   )
