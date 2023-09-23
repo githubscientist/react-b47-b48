@@ -1,20 +1,21 @@
-import './App.css';
+import React from 'react';
 
-const Hello = (props) => {
-  // console.log(props);
+function App(props) {
+  // console.log(props.notes);
+  const { notes } = props;
+
+  // console.log(notes);
+
   return (
     <div>
-      <p>Hello { props.name }, your age is { props.age }</p>
-    </div>
-  )
-}
-
-const App = () => {
-  return (
-    <div>
-      <h1>Greetings</h1>
-      <Hello name='Sathish' age='30' />
-      <Hello name='Krish' age='10' />
+      <h1>Notes</h1>
+      <ul>
+        <li>{notes[0].content}</li>
+        <li>{notes[1].content}</li>
+        <li>{notes[2].content}</li>
+        <li>{notes[3].content}</li>
+        <li>{notes[4].content}</li>
+      </ul>
     </div>
   )
 }
