@@ -3,7 +3,7 @@ function Note({ note }) {
   // const note = props.note;
 
   return (
-    <li>{ note.content }</li>
+    <option>{ note.content }</option>
   )
 }
 
