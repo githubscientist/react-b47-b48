@@ -1,4 +1,7 @@
 h1 {
-    color: white;
-    background-color: red;
+    color: green;
+}
+
+.redColor {
+    color: red;
 }
