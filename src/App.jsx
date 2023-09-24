@@ -1,33 +1,25 @@
-import React from 'react';
-import Note from './components/Note';
+// Function Component
+// import React from 'react'; // not necessary from React 17
 
-function App(props) {
-  const { notes } = props;
-  const optionList = [];
 
-  notes.forEach((note) => {
-    optionList.push(<Note key={note.id} note={note} />);
-  });
 
-  // console.log(optionList);
+// function App() {
+//   return (
+//     <div>Hello World!</div>
+//   )
+// }
 
-  const addNote = () => {
-    console.log('button clicked');
+// export default App;
+
+// Class Component
+import { Component } from "react";
+
+class App extends Component {
+  render() {
+    return (
+      <div>Hello, World!</div>
+    )
   }
-
-  return (
-    <div>
-      <h1>Notes</h1>
-      <ul>
-        { optionList }
-      </ul>
-
-      <form>
-        <input name='note' />
-        <button onClick={() => addNote()}>Save Note</button>
-      </form>
-    </div>
-  )
 }
 
 export default App;
