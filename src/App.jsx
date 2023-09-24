@@ -1,8 +1,18 @@
 import { Component } from "react";
 
-class App extends Component{
+class Hello extends Component{
   render() {
     return <div>Hello Guest!</div>
+  }
+}
+
+class App extends Component{
+  render() {
+    return (
+      <div>
+        <Hello />
+      </div>
+    )
   }
 }
 
