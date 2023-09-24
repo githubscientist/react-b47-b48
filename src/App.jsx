@@ -1,22 +1,27 @@
 import { Component } from "react";
 
-class Hello extends Component{
-  render() {
-    // console.log(this.props);
-    const { name } = this.props;
+class App extends Component {
 
-    // return <div>Hello { this.props.name }!</div>
-    return <div>Hello { name }!</div>
+  // componentDidMount: called after the component has been rendered to the DOM
+  componentDidMount() {
+    console.log('component mounted');
   }
-}
 
-class App extends Component{
+  // called immediately after the component updated in the DOM
+  // called on state or prop changes
+  componentDidUpdate() {
+    console.log('component state updated');
+  }
+
+  componentWillUnmount() {
+    // invoked just before the component is removed from the DOM
+    // releasing memory or resources
+    // detaching the events
+    // cancelling timers
+  }
+
   render() {
-    return (
-      <div>
-        <Hello name='Krish' />
-      </div>
-    )
+    return <div>Hello!</div>
   }
 }
 
