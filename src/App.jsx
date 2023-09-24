@@ -1,27 +1,30 @@
 import { Component } from "react";
 
+// stateful components
 class App extends Component {
+  constructor(props) {
+    super(props); // to call the parent class constructor
 
-  // componentDidMount: called after the component has been rendered to the DOM
-  componentDidMount() {
-    console.log('component mounted');
+    // define the state
+    this.state = {
+      count: 0,
+    }
   }
 
-  // called immediately after the component updated in the DOM
-  // called on state or prop changes
-  componentDidUpdate() {
-    console.log('component state updated');
-  }
-
-  componentWillUnmount() {
-    // invoked just before the component is removed from the DOM
-    // releasing memory or resources
-    // detaching the events
-    // cancelling timers
+  increment = () => {
+    // update the state (data) of the count
+    this.setState({
+      count: this.state.count + 1,
+    })
   }
 
   render() {
-    return <div>Hello!</div>
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.increment}>Increment</button>
+      </div>
+    )
   }
 }
 
