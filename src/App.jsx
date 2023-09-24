@@ -33,6 +33,14 @@ export default class App extends Component {
     })
   }
 
+  handleReset = () => {
+    this.setState({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    })
+  }
+
   render() {
     return (
       <div>
@@ -44,7 +52,9 @@ export default class App extends Component {
         <h2>statistics</h2>
         <p>good { this.state.good }</p>
         <p>neutral { this.state.neutral }</p>
-        <p>bad { this.state.bad }</p>
+        <p>bad {this.state.bad}</p>
+        
+        <button onClick={this.handleReset}>Reset Feedbacks</button>
       </div>
     )
   }
