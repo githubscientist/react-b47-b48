@@ -15,16 +15,19 @@ function App() {
     setCounter(counter + 1);
   }
 
+  const handleMinusClick = () => {
+    setCounter(counter - 1);
+  }
+
   const handleZeroClick = () => {
     setCounter(0);
   }
-
-  console.log('rendering...', counter);
 
   return (
     <div>
       <div>{counter}</div>
       <button onClick={handlePlusClick}>plus</button>
+      <button onClick={handleMinusClick}>minus</button>
       <button onClick={handleZeroClick}>zero</button>
     </div>
   )
