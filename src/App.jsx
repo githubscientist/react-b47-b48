@@ -6,18 +6,8 @@
   To create a counter, where the value is increased as a function of time or at the click of a button.
 */
 import React, { useState } from 'react';
-
-function Display({counter}) {
-  return (
-    <div>{counter}</div>
-  )
-}
-
-function Button({text, handleClick}) {
-  return (
-    <button onClick={handleClick}>{ text }</button>
-  )
-}
+import Button from './components/Button';
+import Display from './components/Display';
 
 function App() {
   const [counter, setCounter] = useState(0);
