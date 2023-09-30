@@ -1,39 +1,69 @@
-import React from 'react';
+// Passing data from child to parent component
+import React, { useState } from 'react';
 
-function GrandChildComponent({ parentData }) {
-  
-  console.log(`from grand child component: ${parentData}`);
+function ChildComponent({onMessage}) {
 
-  return (
-    <div>
-      <h3>Grand Child Comonent</h3>
-    </div>
-  )
-}
-
-
-function ChildComponent({parentData}) {
-
-  console.log(`from child component: ${parentData}`);
+  const message = `Hello from Child!`;
 
   return (
-    <div>
+    <>
       <h2>Child Component</h2>
-      <GrandChildComponent parentData={ parentData } />
-    </div>
+      <button onClick={() => onMessage(message)}>Send Message to the Parent</button>
+    </>
   )
 }
 
 function App() {
 
-  const parentData = `Hello from Parent`;
+  const [message, setMessage] = useState('');
+
+  const handleMessage = (data) => {
+    setMessage(data);
+  }
 
   return (
     <div>
-      <h1>Parent Component</h1>
-      <ChildComponent parentData={ parentData } />
+      <h2>Parent Component</h2>
+      <p>Message from the Child Component: { message }</p>
+      <ChildComponent onMessage={ handleMessage } />
     </div>
   )
 }
 
 export default App;
+
+/*
+  Passing data from the parent component to child component:
+
+  Parent component:
+    const age = 25;
+
+    <Child age = {age} name = {'sathish'} />
+
+  Child component:
+    props -> {
+      age: 25,
+      name: 'sathish'
+    }
+
+  Passing data from the child component to parent component:
+
+    Parent component:
+
+      const [childAge, setChildAge] = useState(0);
+
+      const handleChildAge(age){
+        setChildAge(age);
+      }
+
+      <Child handleChildAge = {handleChildAge} />
+
+    Child component:
+
+      const age = 25;
+
+      props -> { handleChildAge: handleChildAge }
+
+      handleChildAge(25);
+
+*/
