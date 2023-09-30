@@ -5,12 +5,17 @@
   
   To create a counter, where the value is increased as a function of time or at the click of a button.
 */
-import React from 'react';
+import React, { useState } from 'react';
 
-function App(props) {
-  // console.log(props);
-  let { counter } = props;
-  console.log(counter);
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  setTimeout(() => {
+    setCounter(counter + 1)
+  }, 1000);
+
+  console.log('rendering...', counter);
+
   return (
     <div>{ counter }</div>
   )
