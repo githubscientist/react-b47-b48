@@ -1,36 +1,34 @@
-/*
-  Hooks: 
-    - any function that starts with "use" is called a hook.
-    - they are special functions that are only available while React is rendering
-  
-  To create a counter, where the value is increased as a function of time or at the click of a button.
-*/
-import React, { useState } from 'react';
-import Button from './components/Button';
-import Display from './components/Display';
+import React, { useEffect, useState } from 'react';
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  // create a state to store the data fetched from the API
+  const [data, setData] = useState(null);
 
-  const handlePlusClick = () => {
-    // console.log('button clicked');
-    setCounter(counter + 1);
-  }
+  // use the useEffect hook to run the function to call the api only one time
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts`)
+      .then(response => response.json())
+      .then(result => setData(result));
+  }, []);
 
-  const handleMinusClick = () => {
-    setCounter(counter - 1);
-  }
-
-  const handleZeroClick = () => {
-    setCounter(0);
-  }
+  // console.log(data);
 
   return (
     <div>
-      <Display counter={counter} />
-      <Button text='plus' handleClick={ handlePlusClick } />
-      <Button text='minus' handleClick={ handleMinusClick } />
-      <Button text='zero' handleClick={ handleZeroClick } />
+      <h1>API DATA</h1>
+      {
+        data ? (
+          <ul>
+            {
+              data.map(item => {
+                return <li key={item.id}>{ item.title }</li>
+              })
+            }
+          </ul>
+        ) : (
+            <p>Loading data...</p>
+        )
+      }
     </div>
   )
 }
