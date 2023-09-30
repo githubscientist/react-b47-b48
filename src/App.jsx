@@ -67,3 +67,7 @@ export default App;
       handleChildAge(25);
 
 */
+
+// day 21st task => after day 24th topics completion
+// day 22nd task => after day 24th topics completion
+// day 23rd & 24th task (same task) => after day 25th topics completion
