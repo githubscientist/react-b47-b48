@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import ChildComponent from './components/ChildComponent';
+
+// create a context
+const MessageContext = createContext();
 
 function App() {
 
-  // parent component data
-  const message = 'Hello, Child!';
+  const [message, setMessage] = useState('Hello from App');
 
   return (
     <div>
       <h1>Parent Component</h1>
-      <ChildComponent message={ message } />
+      <MessageContext.Provider value={ message }>
+        <ChildComponent />
+      </MessageContext.Provider>
     </div>
   )
 }
 
-export default App;
+export { App as default, MessageContext };
