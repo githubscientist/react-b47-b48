@@ -1,55 +1,28 @@
-import React, { useState } from 'react';
-import Note from './components/Note';
+import React from 'react';
 
-function App(props) {
-  // console.log(props);
-
-  const [notes, setNotes] = useState(props.notes);
-  const [newNote, setNewNote] = useState('');
-
-  const addNote = (event) => {
-    // console.log(event.target);
-    event.preventDefault();
-
-    // console.log('button clicked');
-    // console.log(newNote);
-    const noteObject = {
-      id: notes.length + 1,
-      content: newNote,
-      important: Math.random() < 0.5,
-    }
-
-    setNotes(notes.concat(noteObject));
-    setNewNote('');
-  }
-
-  const handleNoteChange = (event) => {
-    // console.log(event.target.value);
-    // console.log(event.target.value);
-    setNewNote(event.target.value);
-  }
-
+function App() {
   return (
-    <div>
-      <h1>Notes</h1>
-      <ul>
-        {
-          notes.map(note => 
-            <Note key={note.id} note={note} />
-          )
-        }
-      </ul>
-
-      <form onSubmit={addNote}>
-        <input
-          value={newNote}
-          placeholder='a new note...' 
-          onChange={handleNoteChange}
-          />
-        <button type='submit'>save</button>
-      </form>
-    </div>
+    <div>App</div>
   )
 }
 
 export default App;
+
+/*
+  Session Task - Profile Name Changes
+
+  Implement a React component that allows users to change their profile name using the context API.
+  - the component should consist of two parts: a parent component called App and
+  - a child component called Profile.
+
+  The App component should:
+    - Create a context object using the createContext function from React
+    - Define a state variable called profileName using the useState hook and set its value to an empty string.
+    - Wrap the Profile component with the context provider component, passing the profileName state and its corresponding setter function as the value prop.
+
+  The Profile component should:
+    - Use the useContext hook to access the profileName state variable and its setter function from the context.
+    - Render an input field where users can enter their profile name, with its value set to the profileName state variable.
+    - Add an onChange event handler to the input field that updates the profileName state variable with the entered value using the setter function.
+
+*/
