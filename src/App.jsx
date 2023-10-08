@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <h1>Parent Component</h1>
-      <MessageContext.Provider value={ message }>
+      <MessageContext.Provider value={ [message, setMessage] }>
         <ChildComponent />
       </MessageContext.Provider>
     </div>
