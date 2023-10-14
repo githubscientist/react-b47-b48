@@ -1,5 +1,15 @@
-import React, { useReducer, useState } from 'react';
-import { initialState, reducer } from './reducers/CountReducer';
+import React, { useReducer } from 'react';
+
+const initialState = {
+  isActive: false,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'toggle':
+      return { isActive: !state.isActive };
+  }
+}
 
 function App() {
 
@@ -7,10 +17,9 @@ function App() {
 
   return (
     <div>
-      <p>Count: {state.count}</p>
-      <button onClick={() => dispatch( { type: 'increment' })}>Increment</button>
-      <button onClick={() => dispatch( { type: 'decrement' })}>Decrement</button>
-      <button onClick={(() => dispatch({ type: 'reset' }))}>Reset</button>
+      <h2>User Profile</h2>
+      <p>Account Active: { state.isActive ? 'Yes' : 'No' }</p>
+      <button onClick={() => dispatch({type: 'toggle'})}>Toggle Profile</button>
     </div>
   )
 }
