@@ -1,29 +1,24 @@
-import React, { useRef } from 'react'
-import SetInputFocus from './components/SetInputFocus';
+import React, { useEffect, useRef } from 'react';
 
 function App() {
 
-  const inputRef = useRef(null);
+  const countRef = useRef(0);
 
-  function handleButtonClick() {
-    inputRef.current.focus();
-  }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      countRef.current += 1;
+      console.log('Count:', countRef.current);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+
+  }, [countRef]);
 
   return (
     <div>
-      <input 
-        type='text'
-        ref={inputRef}
-      />
-
-      <input 
-        type='text'
-        ref={inputRef}
-      />
-
-
-      <button onClick={handleButtonClick}>Focus Input</button>
-      <SetInputFocus inputRef={ inputRef } />
+      <p>Counter: { countRef.current }</p>
     </div>
   )
 }
