@@ -1,26 +1,28 @@
-import React, { createContext, useState } from 'react';
-import Profile from './components/Profile';
+// useRef - hook: to create a mutable reference to an element or a value that persists across render cycles.
 
-// create a context object using the createContext function from the React
-const ProfileContext = createContext();
+// Example: focus the input text element on click of a button
+
+import React, { useRef } from 'react'
 
 function App() {
 
-  // Define a state variable called profileName using the useState hook and set its value to an empty string
-  const [profileName, setProfileName] = useState('');
+  const inputRef = useRef(null);
 
-  // Wrap the Profile component with the context provider component, passing the profileName state and its corresponding setter function as the value prop.
+  const handleButtonClick = () => {
+    // console.log(inputRef.current.value);
+    inputRef.current.focus();
+  }
 
   return (
     <div>
-      <ProfileContext.Provider value={{profileName, setProfileName}}>
-        <Profile />
-      </ProfileContext.Provider>
+      <input 
+        type='text'
+        ref={inputRef}
+      />
+
+      <button onClick={handleButtonClick}>Focus Input</button>
     </div>
   )
 }
 
-export {
-  App as default,
-  ProfileContext
-};
+export default App;
