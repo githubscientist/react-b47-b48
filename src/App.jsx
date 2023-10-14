@@ -8,7 +8,12 @@ function App() {
 
   const inputRef = useRef(null);
 
-  const handleButtonClick = () => {
+  // const handleButtonClick = () => {
+  //   // console.log(inputRef.current.value);
+  //   inputRef.current.focus();
+  // }
+
+  function handleButtonClick() {
     // console.log(inputRef.current.value);
     inputRef.current.focus();
   }
