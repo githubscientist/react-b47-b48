@@ -4,6 +4,8 @@ import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import ReadNotes from './components/ReadNotes';
 import CreateNote from './components/CreateNote';
+import EditNote from './components/EditNote';
+import DeleteNote from './components/DeleteNote';
 
 function App() {
 
@@ -73,12 +75,16 @@ function App() {
         <Link to="/" style={padding}>Dashboard</Link>
         <Link to="/read" style={padding}>Read Notes</Link>
         <Link to="/create" style={padding}>Create Note</Link>
+        <Link to="/editNote" style={padding}>Edit Note</Link>
+        <Link to="/deleteNote" style={padding}>Delete Note</Link>
       </div>
 
       <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route path='/read' element={<ReadNotes showStatus={showStatus} handleStatusChange={handleStatusChange} notes={notes} />} />
-        <Route path='/create' element={<CreateNote addNote={addNote} newNoteContent={newNoteContent} newNoteImportant={newNoteImportant} newNoteContentRef={newNoteContentRef} setNewNoteContent={setNewNoteContent} setNewNoteImportant={ setNewNoteImportant } />} />
+        <Route path='/create' element={<CreateNote addNote={addNote} newNoteContent={newNoteContent} newNoteImportant={newNoteImportant} newNoteContentRef={newNoteContentRef} setNewNoteContent={setNewNoteContent} setNewNoteImportant={setNewNoteImportant} />} />
+        <Route path='/editNote' element={<EditNote />} />
+        <Route path='/deleteNote' element={<DeleteNote />} />
       </Routes>
 
     </Router>
