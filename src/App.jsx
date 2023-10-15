@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import ReadNotes from './components/ReadNotes';
+import CreateNote from './components/CreateNote';
 
 function App() {
 
@@ -25,10 +26,6 @@ function App() {
       console.log('Failed to fetch notes:', error);
     }
   }
-
-  useEffect(() => {
-    // newNoteContentRef.current.focus();
-  }, []);
 
   useEffect(() => {
     fetchNotes();
@@ -66,20 +63,22 @@ function App() {
   }
 
   const padding = {
-    padding: 15,
+    paddingRight: 15,
   };
 
   return (
     <Router>
 
       <div>
-        <Link to="/" >Dashboard</Link>
+        <Link to="/" style={padding}>Dashboard</Link>
         <Link to="/read" style={padding}>Read Notes</Link>
+        <Link to="/create" style={padding}>Create Note</Link>
       </div>
 
       <Routes>
         <Route path='/' element={<Dashboard />} />
-        <Route path='/read' element={<ReadNotes showStatus={showStatus} handleStatusChange={handleStatusChange} notes={ notes } /> } />
+        <Route path='/read' element={<ReadNotes showStatus={showStatus} handleStatusChange={handleStatusChange} notes={notes} />} />
+        <Route path='/create' element={<CreateNote addNote={addNote} newNoteContent={newNoteContent} newNoteImportant={newNoteImportant} newNoteContentRef={newNoteContentRef} setNewNoteContent={setNewNoteContent} setNewNoteImportant={ setNewNoteImportant } />} />
       </Routes>
 
     </Router>
