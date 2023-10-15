@@ -24,21 +24,6 @@
       "id": 5,
       "content": "Props Vs State",
       "important": false
-    },
-    {
-      "content": "crud with react",
-      "important": false,
-      "id": 6
-    },
-    {
-      "content": "api calls using axios",
-      "important": false,
-      "id": 7
-    },
-    {
-      "content": "react router",
-      "important": false,
-      "id": 8
     }
   ]
 }

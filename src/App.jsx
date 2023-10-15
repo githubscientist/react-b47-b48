@@ -30,7 +30,16 @@ function App() {
   }
 
   useEffect(() => {
-    fetchNotes();
+    let isMounted = true;
+
+    if (isMounted) {
+      fetchNotes();
+    }
+
+    return () => {
+      isMounted = false;
+    }
+
   }, []);
 
   const addNote = (event) => {
@@ -83,8 +92,8 @@ function App() {
         <Route path='/' element={<Dashboard />} />
         <Route path='/read' element={<ReadNotes showStatus={showStatus} handleStatusChange={handleStatusChange} notes={notes} />} />
         <Route path='/create' element={<CreateNote addNote={addNote} newNoteContent={newNoteContent} newNoteImportant={newNoteImportant} newNoteContentRef={newNoteContentRef} setNewNoteContent={setNewNoteContent} setNewNoteImportant={setNewNoteImportant} />} />
-        <Route path='/editNote' element={<EditNote />} />
-        <Route path='/deleteNote' element={<DeleteNote />} />
+        <Route path='/editNote' element={<EditNote notes={notes} setNotes={ setNotes } />} />
+        <Route path='/deleteNote' element={<DeleteNote notes={notes} setNotes={setNotes}/>} />
       </Routes>
 
     </Router>
