@@ -7,11 +7,10 @@ import { Provider } from 'react-redux';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import "bootstrap-icons/font/bootstrap-icons.css";
 
-let initialState = {
-    count: 0
-}
-
-const counterReducer = (state = initialState.count, action) => {
+// define the reducer function
+// initial state and action
+// return : new State
+const counterReducer = (state = 0, action) => {
     switch (action.type) {
         case 'INCR':
             return state + 1;
@@ -24,10 +23,20 @@ const counterReducer = (state = initialState.count, action) => {
     }
 }
 
+// create a new store
 const store = createStore(counterReducer);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <Provider store={store}>
-        <App />
-    </Provider>
-);
+// subscribe method is called whenever we dispatch an action
+store.subscribe(() => {
+    const storeNow = store.getState();
+    console.log(storeNow);
+})
+
+store.dispatch({ type: 'INCR' });
+store.dispatch({ type: 'INCR' });
+store.dispatch({ type: 'DECR' });
+store.dispatch({ type: 'INCR' });
+store.dispatch({ type: 'INCR' });
+store.dispatch({ type: 'ZERO' });
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
