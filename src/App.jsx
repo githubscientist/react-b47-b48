@@ -1,87 +1,135 @@
-import React, { useState } from 'react';
-import './styles/App.css';
+import React, { useEffect, useRef, useState } from 'react';
 
-function Button({value, onClick}) {
-  return (
-    <button className='square' onClick={onClick}>{ value }</button>
-  )
-}
+function App(props) {
+
+  // define states
+  const [notes, setNotes] = useState(props.notes);
+  const [showStatus, setShowStatus] = useState('all');
+  
+  // states for adding new note form
+  const [newNoteContent, setNewNoteContent] = useState('');
+  const [newNoteImportant, setNewNoteImportant] = useState('');
 
 
-function App() {
+  const newNoteContentRef = useRef(null);
 
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState(true);
+  useEffect(() => {
+    newNoteContentRef.current.focus();
+  }, []);
 
-  function handleClick(i) {
+  const addNote = (event) => {
+    event.preventDefault();
 
-    if (squares[i] || calculateWinner(squares)) {
-      return;
+    // create a new note object
+    let noteObject = {
+      id: notes.length + 1,
+      content: newNoteContent,
+      important: newNoteImportant === 'true',
     }
 
-    const nextSquares = squares.slice();
+    setNotes(notes.concat(noteObject));
 
-    if (xIsNext) {
-      nextSquares[i] = 'X';
-    } else {
-      nextSquares[i] = 'O';
+    // clear the inputs
+    setNewNoteContent('');
+    setNewNoteImportant('');
+
+    newNoteContentRef.current.focus();
+  }
+
+  const handleStatusChange = (event) => {
+    // console.log(event.target.value);
+    setShowStatus(event.target.value);
+  }
+
+  let filterNotes = (notes, showStatus) => {
+    switch (showStatus) {
+      case 'all':
+        return notes;
+      case 'imp':
+        return notes.filter(note => note.important === true);
+      case 'nonimp':
+        return notes.filter(note => note.important === false);
     }
-
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
   }
 
-  function calculateWinner(squares) {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-
-    for (let i = 0; i < lines.length; i++){
-      const [a, b, c] = lines[i];
-
-      if(squares[a] && squares[a] == squares[b] && squares[a] == squares[c]){
-        return squares[a];
-      }
-    }
-
-    return null;
-  }
-
-  let winner = calculateWinner(squares);
-  let status;
-  if (winner) {
-    status = 'Winner: ' + winner;
-  } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-  }
+  const notesFiltered = filterNotes(notes, showStatus);
 
   return (
     <div>
-      <div>
-        {status}
-      </div>
-      <div className='row'>
-        <Button value={squares[0]} onClick={() => handleClick(0)} />
-        <Button value={squares[1]} onClick={() => handleClick(1)} />
-        <Button value={squares[2]} onClick={() => handleClick(2)} />
-      </div>
-      <div className='row'>
-        <Button value={squares[3]} onClick={() => handleClick(3)} />
-        <Button value={squares[4]} onClick={() => handleClick(4)} />
-        <Button value={squares[5]} onClick={() => handleClick(5)} />
-      </div>
-      <div className='row'>
-        <Button value={squares[6]} onClick={() => handleClick(6)} />
-        <Button value={squares[7]} onClick={() => handleClick(7)} />
-        <Button value={squares[8]} onClick={() => handleClick(8)} />
-      </div>
+      <h1>Notes</h1>
+
+      <label>
+        <input 
+          type='radio'
+          name='filter'
+          onChange={handleStatusChange}
+          value='all'
+          checked={showStatus === 'all'}
+        />
+        All Notes
+      </label>
+
+      <label>
+        <input 
+          type='radio'
+          name='filter'
+          onChange={handleStatusChange}
+          value='imp'
+          
+        />
+        Important Notes
+      </label>
+
+      <label>
+        <input 
+          type='radio'
+          name='filter'
+          onChange={handleStatusChange}
+          value='nonimp'
+          
+        />
+        Non-Important Notes
+      </label>
+
+      <ul>
+        {
+          notesFiltered.map(note => 
+            <li key={note.id}>{ note.content }</li>
+          )
+        }
+      </ul>
+      <hr></hr>
+      <h2>Add a New Note</h2>
+      <form onSubmit={addNote}>
+        <label>
+          Content: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input 
+            onChange={(e) => setNewNoteContent(e.target.value)}
+            value={newNoteContent}
+            ref={newNoteContentRef}
+            required
+          />
+        </label>
+        <br /><br />
+        <label>
+          Is Important: &nbsp;&nbsp;  
+          <select
+            onChange={(e) => setNewNoteImportant(e.target.value)}
+            value={newNoteImportant}
+            required
+          >
+            <option disabled>--select--</option>
+            <option>true</option>
+            <option>false</option>
+          </select>
+        </label>
+
+        <br /><br />
+
+        <button type='submit'>Add New Note</button>
+
+      </form>
+
     </div>
   )
 }
