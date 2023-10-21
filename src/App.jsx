@@ -47,27 +47,41 @@ store.dispatch({
 })
 
 store.dispatch({
-  type: 'TOGGLE_IMPORTANCE',
-  payload: {
-    id: 2,
-  }
-})
+      type: 'TOGGLE_IMPORTANCE',
+      payload: {
+        id: 2,
+      }
+    })
 
-store.dispatch({
-  type: 'TOGGLE_IMPORTANCE',
-  payload: {
-    id: 1,
-  }
-})
+    store.dispatch({
+      type: 'TOGGLE_IMPORTANCE',
+      payload: {
+        id: 1,
+      }
+    })
 
 function App() {
+
   // console.log(store.getState());
+  const toggleImportance = (id) => {
+    console.log('clicked', id);
+    store.dispatch({
+      type: 'TOGGLE_IMPORTANCE',
+      payload: {
+        id: id,
+      }
+    })
+  }
+  
   return (
     <div>
       <ul>
         {
           store.getState().map(note => 
-            <li key={note.id}>
+            <li
+              key={note.id}
+              onClick={() => toggleImportance(note.id)}
+            >
               {note.content} <strong>{ note.important ?  '★' : ''}</strong>
             </li>
           )
