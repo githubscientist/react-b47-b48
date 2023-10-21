@@ -4,7 +4,7 @@ import { toggleImportanceOf } from '../reducers/noteReducer';
 
 function Notes() {
     const dispatch = useDispatch();
-    const notes = useSelector(state => state);
+    const notes = useSelector(state => state.notes);
 
     const toggleImportance = (id) => {
         dispatch(toggleImportanceOf(id));
