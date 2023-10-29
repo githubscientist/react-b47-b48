@@ -6,6 +6,7 @@ import ReadNotes from './components/ReadNotes';
 import CreateNote from './components/CreateNote';
 import EditNote from './components/EditNote';
 import DeleteNote from './components/DeleteNote';
+import './styles/App.css';
 
 function App() {
 
@@ -73,20 +74,28 @@ function App() {
     setShowStatus(event.target.value);
   }
 
-  const padding = {
-    paddingRight: 15,
-  };
-
   return (
     <Router>
 
-      <div>
-        <Link to="/" style={padding}>Dashboard</Link>
-        <Link to="/read" style={padding}>Read Notes</Link>
-        <Link to="/create" style={padding}>Create Note</Link>
-        <Link to="/editNote" style={padding}>Edit Note</Link>
-        <Link to="/deleteNote" style={padding}>Delete Note</Link>
-      </div>
+      <nav className='navbar'>
+        <ul>
+          <li>
+            <Link to="/">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/read">Read Notes</Link>
+          </li>
+          <li>
+            <Link to="/create">Create Note</Link>
+          </li>
+          <li>
+            <Link to="/editNote">Edit Note</Link>
+          </li>
+          <li>
+            <Link to="/deleteNote">Delete Note</Link>
+          </li>
+        </ul>
+      </nav>
 
       <Routes>
         <Route path='/' element={<Dashboard />} />
